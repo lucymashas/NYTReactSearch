@@ -7,7 +7,7 @@ const Results = props =>
       </div>
       <div className="card-body">
         <p>
-           Respond: {props.response}
+           Headline: {props.result}
         </p>
 
       </div>

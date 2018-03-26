@@ -1,27 +1,26 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Form from "./Form";
 import API from "../utils/API";
 import Results from "./Results";
 
 
-class Search extends React.Component{
+class Search extends Component{
     state = {
-      searchTerms: "",
-      number: 0,
-      styr: "",
-      endyr: "",
+      search: "",
       result: []
     };
 
     searchArticles = query => (
       API.search(query)
-        .then(res => this.setSate({result:res.data}))
-        .catch(err => console.log(err))
+        .then(res => {
+          console.log(res);
+          this.setState({result: res.data});
+        }).catch(err => console.log(err))
     );
   
 
     handleInputChange = event => {
-      const {name,value} = event.targer
+      const {name,value} = event.target;
       this.setState({
         [name]:value
     })
@@ -35,15 +34,13 @@ class Search extends React.Component{
   render () {
     return (
       <div>
-      <Results
-          response={this.state.result}
-              />
-      <Search
+     
+      <Form
                 value={this.state.search}
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
               />
-      console.log({this.state.result})
+
       </div>
     );
   }
